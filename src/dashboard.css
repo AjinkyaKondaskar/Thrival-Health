@@ -1,4 +1,134 @@
-/* Dashboard Container Styling */
+.dashboard-panel {
+    width: 100%;
+    background-color: #800000; /* Maroon */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    position: fixed; /* Fix to the top */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Keep it above everything */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .dashboard-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .dashboard-nav {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .panel-button {
+    background-color: white;
+    color: #800000;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .panel-button:hover {
+    background-color: #a52a2a;
+    color: white;
+  }
+
+  /* Profile Container */
+.profile-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Profile Picture */
+  .profile-picture {
+    width: 40px;  /* Adjust size */
+    height: 40px;
+    border-radius: 50%; /* Makes it circular */
+    border: 2px solid white;
+  }
+  
+  /* Profile Name */
+  .profile-name {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  /* Container for OrderText, Input, and Buttons */
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space out items */
+    gap: 15px; /* Adds spacing between elements */
+    padding: 10px 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* OrderText Styling */
+  .order-text-container {
+    flex-shrink: 0; /* Prevent shrinking */
+  }
+  
+  /* Search Input Styling */
+  .dashboard-search {
+    flex: 1; /* Takes up remaining space */
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    min-width: 250px; /* Prevents it from becoming too small */
+  }
+  
+  /* Button Container */
+  .dashboard-buttons {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+  }
+
+  /* Container for order text */
+.order-text-container {
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Styling for order number */
+  .order-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #800000; /* Maroon */
+    margin-bottom: 5px;
+  }
+  
+  /* Styling for order details */
+  .order-details {
+    font-size: 18px;
+    font-weight: normal;
+    color: #555; /* Light gray for contrast */
+    margin: 0;
+  }
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates a 2-column layout */
+    gap: 20px; /* Adds spacing between grid items */
+    max-width: 900px; /* Adjust based on your layout */
+    margin: 20px auto;
+  }
+
 .dashboard-container {
     padding: 20px;
     border: 1px solid #ddd;
@@ -21,10 +151,14 @@
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  /* Headers */
-  h2 {
+  .dashboard-container-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #800000; /* Maroon */
     text-align: center;
-    color: #333;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #a52a2a; /* Slightly darker maroon underline */
   }
   
   h3 {
@@ -34,7 +168,6 @@
   }
 
   .dashboard-button {
-    background-color: #800000; /* Maroon color */
     color: white; /* White text */
     border: none;
     padding: 12px 20px;
@@ -47,4 +180,24 @@
   /* Hover effect */
   .dashboard-button:hover {
     background-color: #a52a2a; /* Darker red on hover */
+  }
+
+  .input-container {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .dashboard-textfield {
+    width: 80%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  .dashboard-textfield:focus {
+    border-color: #800000;
+    box-shadow: 0 0 5px rgba(128, 0, 0, 0.5);
   }
