@@ -5,7 +5,7 @@ export default function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    rememberMe: false,
+    rememberMe: true,
   });
 
   const navigate = useNavigate();
