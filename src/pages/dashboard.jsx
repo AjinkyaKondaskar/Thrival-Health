@@ -6,7 +6,7 @@ function Dashboard() {
 
   return (
     <>
-        <DashboardPanel profilePicture="https://thumbs.dreamstime.com/b/beautiful-happy-reddish-havanese-puppy-dog-sitting-frontal-looking-camera-isolated-white-background-46868560.jpg"/>
+       
         <div className="dashboard-header">
             <OrderText orderNumber="#678584" details="Sara Durham on January 17, 2025" />
             <input type="text" placeholder="Search by patient or order" className="dashboard-search" />
@@ -59,22 +59,7 @@ const OrderText = ({ orderNumber, details }) => {
   };
 
 
-const DashboardPanel = ({profilePicture}) => {
-    return (
-      <div className="dashboard-panel">
-        <h1 className="dashboard-title">My Dashboard</h1>
-        <nav className="dashboard-nav">
-          <button className="panel-button">Home</button>
-          <button className="panel-button">Settings</button>
-          <button className="panel-button">Logout</button>
-        </nav>
-        <div className="profile-container">
-            <img src={profilePicture} alt="Profile" className="profile-picture" />
-            <span className="profile-name">John Doe</span>
-        </div>
-      </div>
-    );
-  };
+
 
 const DashboardContainer = ({ children }) => {
     return <div className="dashboard-container">{children}</div>;
