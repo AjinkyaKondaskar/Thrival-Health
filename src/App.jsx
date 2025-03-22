@@ -8,6 +8,8 @@ import ProductListing from './pages/productlisting';
 import Dashboard from './pages/dashboard';
 import Login from './pages/login';
 import DrugDetails from './pages/DrugDetails';  // ✅ Import DrugDetails Page
+import Questionaire from './Questionaire';
+import Checkout from './pages/CheckOut';
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
           <Route path="/orderdashboard" element={<OrderDashboard />} />
           <Route path="/productlisting" element={<ProductListing />} />
           <Route path="/drug/:drugName" element={<DrugDetails />} />  {/* ✅ Drug Details Route */}
+          <Route path="/questionaire" element={<Questionaire />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </Router>
     </>

@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom";
 import { drugs } from "../data";
+import { useNavigate } from "react-router-dom";
 
 export default function DrugDetails() {
   const { drugName } = useParams();
+  const navigate = useNavigate();
 
   let selectedDrug = null;
   for (const category in drugs) {
@@ -71,8 +73,9 @@ export default function DrugDetails() {
         </div>
 
         {/* Purchase Button */}
-        <button className="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg text-lg font-semibold mt-6">
+        <button className="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg text-lg font-semibold mt-6" onClick={() => navigate('/questionaire')}>
           PURCHASE
+          
         </button>
       </div>
     </div>
