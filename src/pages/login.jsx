@@ -125,7 +125,7 @@ export default function Login() {
               If your medical provider does not prescribe the product selected, your payment will be refunded.
             </p>
             <button className="mt-6 bg-red-500 text-white px-6 py-2 rounded-full shadow-md hover:bg-red-600 transition">
-              EXPLORE OUR PRODUCTS
+              SIGN UP
             </button>
           </div>
           <div className="w-full md:w-1/2 flex justify-center">
@@ -163,7 +163,7 @@ export default function Login() {
               If your medical provider does not prescribe the product selected, your payment will be refunded.
             </p>
             <button className="mt-6 bg-red-500 text-white px-6 py-2 rounded-full shadow-md hover:bg-red-600 transition">
-              EXPLORE OUR PRODUCTS
+              SIGN UP
             </button>
           </div>
           <div className="w-full md:w-1/2 flex justify-center">
@@ -200,7 +200,7 @@ export default function Login() {
               If your medical provider does not prescribe the product selected, your payment will be refunded.
             </p>
             <button className="mt-6 bg-red-500 text-white px-6 py-2 rounded-full shadow-md hover:bg-red-600 transition">
-              EXPLORE OUR PRODUCTS
+              SIGN UP
             </button>
           </div>
           <div className="w-full md:w-1/2 flex justify-center">
