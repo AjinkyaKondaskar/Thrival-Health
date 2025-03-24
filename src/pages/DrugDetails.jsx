@@ -73,9 +73,14 @@ export default function DrugDetails() {
         </div>
 
         {/* Purchase Button */}
-        <button className="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg text-lg font-semibold mt-6" onClick={() => navigate('/questionaire')}>
+        <button
+          className="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg text-lg font-semibold mt-6"
+          onClick={() => {
+            localStorage.setItem("selectedDrug", JSON.stringify(selectedDrug));
+            navigate('/checkout');
+          }}
+        >
           PURCHASE
-          
         </button>
       </div>
     </div>
