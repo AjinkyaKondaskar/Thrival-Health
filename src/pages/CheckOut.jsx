@@ -1,6 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Checkout() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const completed = localStorage.getItem("questionnaireCompleted");
+    if (!completed) {
+      navigate("/questionaire");
+    }
+  }, []);
+
   const [step, setStep] = useState(1);
 
   const [billing, setBilling] = useState({
@@ -20,6 +30,9 @@ export default function Checkout() {
 
   const [paymentMethod, setPaymentMethod] = useState('credit_card');
 
+  const storedDrug = localStorage.getItem("selectedDrug");
+  const cartItem = storedDrug ? JSON.parse(storedDrug) : null;
+
   const handleBillingChange = (e) => {
     setBilling({ ...billing, [e.target.name]: e.target.value });
   };
@@ -35,11 +48,9 @@ export default function Checkout() {
 
   return (
     <div className="max-w-7xl mx-auto p-6 flex flex-col lg:flex-row gap-8">
-      {/* LEFT: Form Steps */}
       <div className="flex-1 space-y-6">
         <h2 className="text-2xl font-bold mb-4">Checkout</h2>
 
-        {/* Billing Section */}
         <div className="bg-gray-100 rounded-2xl p-6 shadow">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-semibold">Billing Details</h3>
@@ -63,7 +74,6 @@ export default function Checkout() {
           )}
         </div>
 
-        {/* Shipping Section */}
         <div className="bg-gray-100 rounded-2xl p-6 shadow">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-semibold">Shipping Details</h3>
@@ -86,7 +96,6 @@ export default function Checkout() {
           ) : null}
         </div>
 
-        {/* Payment Section */}
         <div className="bg-gray-100 rounded-2xl p-6 shadow">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-semibold">Payment Method</h3>
@@ -116,23 +125,38 @@ export default function Checkout() {
         </div>
       </div>
 
-      {/* RIGHT: Cart Summary */}
-      <div className="w-full lg:w-1/3 bg-teal-400 rounded-[40px] p-6 text-white flex flex-col justify-between shadow-md">
-        <div>
-          <h3 className="text-xl font-bold mb-6">PRODUCTS IN CART</h3>
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-3">
-              <img src="https://via.placeholder.com/50" alt="product" className="w-12 h-12 rounded" />
-              <span>GLP-1 + B12 <span className="font-bold">Tier 1</span></span>
+      <div className="w-full lg:w-1/3 bg-teal-400 rounded-[40px] p-6 text-white flex flex-col shadow-md">
+        <h3 className="text-xl font-bold mb-6 text-center">PRODUCTS IN CART</h3>
+
+        {cartItem ? (
+          <div className="flex flex-col items-center text-center mb-4">
+            <img
+              src={`/${cartItem.image}`}
+              alt={cartItem.name}
+              className="w-28 h-28 rounded-xl mb-4 object-contain shadow-lg"
+            />
+            <div className="text-xl font-bold leading-snug">
+              {cartItem.name}
+              <div className="text-lg font-semibold">Tier 1</div>
             </div>
-            <span className="text-sm text-black">Payment Options Below</span>
           </div>
-          <p className="underline mb-2 cursor-pointer">Got a promo code? <span className="text-red-300">▲</span></p>
-          <input type="text" placeholder="Enter promo code" className="w-full p-3 rounded text-black" />
+        ) : (
+          <div className="text-center text-red-200">
+            No product selected.
+          </div>
+        )}
+
+        <div className="mt-6 w-full">
+          <p className="text-white underline cursor-pointer text-center mb-2">
+            Got a promo code? <span className="text-red-300">▲</span>
+          </p>
+          <input
+            type="text"
+            placeholder="Enter promo code"
+            className="w-full p-3 text-base rounded-lg text-black bg-white focus:outline-none focus:ring-2 focus:ring-white"
+          />
         </div>
       </div>
     </div>
   );
 }
-
-  
