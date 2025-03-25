@@ -1,282 +1,150 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { FaClipboardList, FaUserMd, FaBox } from "react-icons/fa"; // Icons for steps
+import React, { useState } from "react";
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 
-export default function Login() {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    rememberMe: true,
-  });
+const options = [
+  {
+    title: "Get our trusted Points® program",
+    image: "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI0LTA3L3Jhd3BpeGVsX29mZmljZV8zN19zaW5nbGVfd2hpdGVfY2hvb2tfaGVuX2lzb2xhdGVkX29uX3doaXRlX2JhY19lMDAyMDRiZi0wNmIwLTQxZDUtYjQ1MS1iZGY1OTIyNjJhNTcucG5n.png",
+  },
+  {
+    title: "NEW! Access weight-loss meds",
+    image: "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI0LTA3L3Jhd3BpeGVsX29mZmljZV8zN19zaW5nbGVfd2hpdGVfY2hvb2tfaGVuX2lzb2xhdGVkX29uX3doaXRlX2JhY19lMDAyMDRiZi0wNmIwLTQxZDUtYjQ1MS1iZGY1OTIyNjJhNTcucG5n.png",
+  },
+  {
+    title: "NEW! Personalized meal planning with a Dietitian",
+    image: "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI0LTA3L3Jhd3BpeGVsX29mZmljZV8zN19zaW5nbGVfd2hpdGVfY2hvb2tfaGVuX2lzb2xhdGVkX29uX3doaXRlX2JhY19lMDAyMDRiZi0wNmIwLTQxZDUtYjQ1MS1iZGY1OTIyNjJhNTcucG5n.png",
+  },
+  {
+    title: "Coach-led Workshops with other members",
+    image: "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI0LTA3L3Jhd3BpeGVsX29mZmljZV8zN19zaW5nbGVfd2hpdGVfY2hvb2tfaGVuX2lzb2xhdGVkX29uX3doaXRlX2JhY19lMDAyMDRiZi0wNmIwLTQxZDUtYjQ1MS1iZGY1OTIyNjJhNTcucG5n.png",
+  },
+];
 
-  const [selectedStep, setSelectedStep] = useState(1); // Track selected step
-  const navigate = useNavigate();
+const slides = [
+  {
+    heading: "Transform Your Health Journey",
+    image: "https://letsenhance.io/static/73136da51c245e80edc6ccfe44888a99/1015f/MainBefore.jpg",
+    alt: "Slide 1",
+  },
+  {
+    heading: "Achieve Real Results",
+    image: "https://gratisography.com/wp-content/uploads/2025/01/gratisography-dog-vacation-800x525.jpg",
+    alt: "Slide 2",
+  },
+  {
+    heading: "Your Wellness, Delivered",
+    image: "https://t3.ftcdn.net/jpg/09/66/25/08/360_F_966250839_jBhNnhyGs4wbtxXeBEsgFGu4dxhCrdjn.jpg",
+    alt: "Slide 3",
+  },
+];
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
+export default function WeightLossSection() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const handleNext = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Logging in with:", formData);
-
-    if (formData.email === "admin@example.com" && formData.password === "password") {
-      localStorage.setItem("auth", "true");
-      navigate("/dashboard");
-    } else {
-      alert("Invalid credentials! Try again.");
-    }
+  const handlePrev = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 px-4 pb-20">
-      {/* Thrival Health Statement */}
-      <div className="text-center mb-8">
-        <h3 className="text-sm uppercase tracking-wide text-gray-500 font-semibold">
-          Empowering Health and Longevity
-        </h3>
-        <h1 className="text-3xl md:text-4xl font-bold text-teal-700 mt-2">
-          Thrival Health: Elevate Your Well-Being
-        </h1>
-        <p className="text-gray-600 mt-3 max-w-2xl mx-auto">
-          At Thrival Health, we go beyond healthcare. We are a community dedicated to making 
-          wellness accessible, affordable, and empowering individuals to take charge of their health.
-        </p>
-      </div>
+    <div className="bg-white py-16 px-6 md:px-20">
+      <h2 className="text-4xl font-bold text-indigo-900 mb-2">
+        Weight loss. <span className="text-indigo-600">Health gains.</span>
+      </h2>
+      <p className="text-xl text-gray-700 mb-10">
+        Choose the path that <span className="font-semibold">fits you</span>.
+      </p>
 
-      {/* How It Works Section */}
-      <div className="text-center mb-12">
-        <h3 className="text-sm uppercase tracking-wide text-gray-500 font-semibold">
-          Three Easy Steps
-        </h3>
-        <h2 className="text-3xl font-bold text-gray-800 mt-2">How It Works</h2>
-      </div>
-
-      {/* Step Cards */}
-      <div className="flex flex-col md:flex-row justify-center gap-6 md:gap-10 mb-12">
-        {/* Step 1 */}
-        <div
-          onClick={() => setSelectedStep(1)}
-          className={`cursor-pointer ${
-            selectedStep === 1 ? "bg-white ring-2 ring-teal-500" : "bg-gray-100"
-          } shadow-lg rounded-lg p-6 text-center w-64 transition`}
-        >
-          <FaClipboardList className="text-teal-700 text-4xl mx-auto mb-3" />
-          <h4 className="text-lg font-bold text-teal-700">STEP 1</h4>
-          <p className="text-gray-700 text-sm">Questionnaire</p>
-        </div>
-
-        {/* Step 2 */}
-        <div
-          onClick={() => setSelectedStep(2)}
-          className={`cursor-pointer ${
-            selectedStep === 2 ? "bg-white ring-2 ring-teal-500" : "bg-gray-100"
-          } shadow-lg rounded-lg p-6 text-center w-64 transition`}
-        >
-          <FaUserMd className="text-teal-700 text-4xl mx-auto mb-3" />
-          <h4 className="text-lg font-bold text-teal-700">STEP 2</h4>
-          <p className="text-gray-700 text-sm">Medical Review</p>
-        </div>
-
-        {/* Step 3 */}
-        <div
-          onClick={() => setSelectedStep(3)}
-          className={`cursor-pointer ${
-            selectedStep === 3 ? "bg-white ring-2 ring-teal-500" : "bg-gray-100"
-          } shadow-lg rounded-lg p-6 text-center w-64 transition`}
-        >
-          <FaBox className="text-teal-700 text-4xl mx-auto mb-3" />
-          <h4 className="text-lg font-bold text-teal-700">STEP 3</h4>
-          <p className="text-gray-700 text-sm">Pharmacy Fulfillment</p>
-        </div>
-      </div>
-
-      {/* Step Content Section */}
-      {selectedStep === 1 && (
-        <div className="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto mt-4 gap-10 px-4 mb-12">
-          <div className="w-full md:w-1/2">
-            <h2 className="text-2xl font-semibold text-red-600">
-              Complete Health Questionnaire
-            </h2>
-            <p className="text-gray-600 mt-2">
-              You have already taken the first step to improving your health and we appreciate 
-              you visiting our site. Please browse our products to learn more about the 
-              treatments available to you.
-            </p>
-            <ul className="mt-4 text-gray-700 space-y-2">
-              <li className="flex items-start">
-                <span className="text-red-500 font-bold mr-2">•</span>
-                Create a profile with your name, contact information, and address.
-              </li>
-              <li className="flex items-start">
-                <span className="text-red-500 font-bold mr-2">•</span>
-                Complete a short health questionnaire.
-              </li>
-              <li className="flex items-start">
-                <span className="text-red-500 font-bold mr-2">•</span>
-                Select payment option and complete payment.
-              </li>
-            </ul>
-            <p className="text-sm text-gray-500 mt-4">
-              If your medical provider does not prescribe the product selected, your payment will be refunded.
-            </p>
-            <button className="mt-6 bg-red-500 text-white px-6 py-2 rounded-full shadow-md hover:bg-red-600 transition">
-              SIGN UP
-            </button>
-          </div>
-          <div className="w-full md:w-1/2 flex justify-center">
-            <img
-              src="/images/health.jpg"
-              alt="Smiling Woman on Laptop"
-              className="rounded-lg shadow-md max-w-full"
-            />
-          </div>
-        </div>
-      )}
-
-      {selectedStep === 2 && (
-        <div className="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto mt-4 gap-10 px-4 mb-12">
-          <div className="w-full md:w-1/2">
-            <h2 className="text-2xl font-semibold text-red-600">Medical Review</h2>
-            <p className="text-gray-600 mt-2">
-              A medical provider reviews your health history to prescribe the best possible solution and dosage for you. A phone call may be required.
-            </p>
-            <ul className="mt-4 text-gray-700 space-y-2">
-              <li className="flex items-start">
-                <span className="text-red-500 font-bold mr-2">•</span>
-                Create a profile with your name, contact information, and address.
-              </li>
-              <li className="flex items-start">
-                <span className="text-red-500 font-bold mr-2">•</span>
-                Complete a short health questionnaire.
-              </li>
-              <li className="flex items-start">
-                <span className="text-red-500 font-bold mr-2">•</span>
-                Select payment option and complete payment.
-              </li>
-            </ul>
-            <p className="text-sm text-gray-500 mt-4">
-              If your medical provider does not prescribe the product selected, your payment will be refunded.
-            </p>
-            <button className="mt-6 bg-red-500 text-white px-6 py-2 rounded-full shadow-md hover:bg-red-600 transition">
-              SIGN UP
-            </button>
-          </div>
-          <div className="w-full md:w-1/2 flex justify-center">
-            <img
-              src="/images/doctor-review.jpg"
-              alt="Doctor reviewing on laptop"
-              className="rounded-lg shadow-md max-w-full"
-            />
-          </div>
-        </div>
-      )}
-      {selectedStep === 3 && (
-        <div className="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto mt-4 gap-10 px-4 mb-12">
-          <div className="w-full md:w-1/2">
-            <h2 className="text-2xl font-semibold text-red-600">Pharmacy Fulfillment</h2>
-            <p className="text-gray-600 mt-2">
-              Receive your medication directly to your home within 7–10 business days.
-            </p>
-            <ul className="mt-4 text-gray-700 space-y-2">
-              <li className="flex items-start">
-                <span className="text-red-500 font-bold mr-2">•</span>
-                Create a profile with your name, contact information, and address.
-              </li>
-              <li className="flex items-start">
-                <span className="text-red-500 font-bold mr-2">•</span>
-                Complete a short health questionnaire.
-              </li>
-              <li className="flex items-start">
-                <span className="text-red-500 font-bold mr-2">•</span>
-                Select payment option and complete payment.
-              </li>
-            </ul>
-            <p className="text-sm text-gray-500 mt-4">
-              If your medical provider does not prescribe the product selected, your payment will be refunded.
-            </p>
-            <button className="mt-6 bg-red-500 text-white px-6 py-2 rounded-full shadow-md hover:bg-red-600 transition">
-              SIGN UP
-            </button>
-          </div>
-          <div className="w-full md:w-1/2 flex justify-center">
-            <img
-              src="/images/doctor-review.jpg"
-              alt="Doctor reviewing on laptop"
-              className="rounded-lg shadow-md max-w-full"
-            />
-          </div>
-        </div>
-      )}
-
-
-
-      {/* Login Box */}
-      <div className="bg-white shadow-lg rounded-lg px-8 py-6 w-96">
-        <h2 className="text-2xl font-semibold text-center text-gray-700">Login</h2>
-
-        <form className="mt-4" onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-600 text-sm font-medium">Email</label>
-            <input
-              type="email"
-              name="email"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Enter your email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-gray-600 text-sm font-medium">Password</label>
-            <input
-              type="password"
-              name="password"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Enter your password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className="flex justify-between items-center mb-4">
-            <label className="flex items-center text-sm text-gray-600">
-              <input
-                type="checkbox"
-                name="rememberMe"
-                className="mr-2"
-                checked={formData.rememberMe}
-                onChange={handleChange}
-              />
-              Remember Me
-            </label>
-            <a href="/forgot-password" className="text-blue-500 text-sm hover:underline">
-              Forgot Password?
-            </a>
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-md transition duration-200"
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+        {options.map((option, index) => (
+          <div
+            key={index}
+            className="bg-[#fcf7f2] rounded-3xl shadow-sm p-6 flex flex-col justify-between hover:shadow-md transition"
           >
-            Login
-          </button>
-        </form>
+            <div className="flex justify-between items-start">
+              <h3 className="text-lg font-medium text-gray-900 w-3/4">
+                {option.title}
+              </h3>
+              <div className="bg-indigo-600 text-white p-2 rounded-full">
+                <FaArrowRight size={14} />
+              </div>
+            </div>
+            <div className="mt-6 w-full h-40 flex justify-center items-center">
+              <img
+                src={option.image}
+                alt={option.title}
+                className="h-48 w-full object-contain"
+            />
+            </div>
+          </div>
+        ))}
+      </div>
+      <h1 className="text-5xl md:text-6xl font-extrabold text-center text-indigo-800 mb-8">
+  How It Works
+</h1>
+{/* New Section with Text and Slideshow */}
+<div className="bg-indigo-700 rounded-xl px-10 py-6 mt-10 flex flex-col gap-10 items-center">
+  {/* Container for the 4 items */}
+  <div className="flex w-full items-center justify-between gap-4">
+    
+    {/* Left Arrow */}
+    <button
+      onClick={handlePrev}
+      className="text-white p-3 hover:bg-white/10 rounded-full"
+    >
+      <FaArrowLeft size={24} />
+    </button>
 
-        <p className="mt-4 text-sm text-center text-gray-600">
-          Don't have an account?{" "}
-          <a href="/register" className="text-blue-500 hover:underline">
-            Sign Up
-          </a>
-        </p>
+    {/* Text Content */}
+    <div className="w-1/3 text-left">
+      <p className="text-white text-lg mb-4">
+        Start your journey by completing a brief questionnaire. This helps us provide the best care tailored to you.
+      </p>
+      <ul className="list-disc list-inside text-white/90">
+        <li>Create a profile with your name, contact information, and address.</li>
+        <li>Complete a short health questionnaire.</li>
+        <li>Select a payment option and complete payment.</li>
+      </ul>
+    </div>
+
+    {/* Slide Content */}
+    <div className="w-1/3 text-center text-white">
+      <p className="text-2xl font-extrabold mb-4">
+        {slides[currentSlide].heading}
+      </p>
+      <div className="w-full h-64 bg-white rounded-lg flex items-center justify-center shadow-md overflow-hidden">
+        <img
+          src={slides[currentSlide].image}
+          alt={slides[currentSlide].alt}
+          className="w-full h-full object-cover"
+        />
       </div>
     </div>
+
+    {/* Right Arrow */}
+    <button
+      onClick={handleNext}
+      className="text-white p-3 hover:bg-white/10 rounded-full"
+    >
+      <FaArrowRight size={24} />
+    </button>
+  </div>
+
+  {/* Centered Sign Up Button */}
+  <div className="mt-8">
+    <button className="px-30 py-6 bg-white text-indigo-700 font-semibold rounded-full shadow-md hover:bg-gray-100 transition">
+      Sign Up
+    </button>
+  </div>
+</div>
+
+      
+
+      </div>
+   
+    
   );
 }
